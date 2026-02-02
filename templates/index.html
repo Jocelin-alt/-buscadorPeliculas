@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="mb-4">Películas más populares</h2>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+    {% for movie in movies %}
+    <div class="col">
+        <div class="card h-100">
+            {% if movie.poster_path %}
+            <img src="{{ image_url }}{{ movie.poster_path }}" class="card-img-top">
+            {% endif %}
+            <div class="card-body">
+                <h6>{{ movie.title }}</h6>
+                <p> {{ movie.vote_average }}</p>
+                <p>{{ movie.release_date[:4] }}</p>
+                <a href="/detalle/{{ movie.id }}" class="btn btn-sm btn-primary">Ver detalle</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

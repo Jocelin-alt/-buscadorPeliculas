@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h4>Resultados para: "{{ query }}"</h4>
+
+{% if movies %}
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+    {% for movie in movies %}
+    <div class="col">
+        <div class="card h-100">
+            {% if movie.poster_path %}
+            <img src="{{ image_url }}{{ movie.poster_path }}" class="card-img-top">
+            {% endif %}
+            <div class="card-body">
+                <h6>{{ movie.title }}</h6>
+                <a href="/detail/{{ movie.id }}" class="btn btn-sm btn-primary">Ver detalle</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No hay resultados</p>
+{% endif %}
+{% endblock %}
